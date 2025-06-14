@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -10,7 +11,7 @@ function App() {
   const [showHomePopup, setShowHomePopup] = useState(false);
   const [isHomeMinimized, setIsHomeMinimized] = useState(false);
   const [isHomeMaximized, setIsHomeMaximized] = useState(false);
-  
+
   const [showAboutPopup, setShowAboutPopup] = useState(false);
   const [isAboutMinimized, setIsAboutMinimized] = useState(false);
   const [isAboutMaximized, setIsAboutMaximized] = useState(false);
@@ -31,7 +32,7 @@ function App() {
         height: '100vh',
         position: 'relative',
         overflow: 'hidden',
-        paddingBottom: '40px', // space for taskbar
+        paddingBottom: '40px',
       }}
     >
       {/* Desktop Icons */}
@@ -53,17 +54,14 @@ function App() {
           <img src="/icons/about_me.png" alt="Home" width="32" />
           <span>About me</span>
         </div>
-
         <div onClick={() => { setShowAboutPopup(true); setIsAboutMinimized(false); }} style={iconStyle}>
           <img src="/icons/projects.png" alt="About" width="32" />
           <span>About</span>
         </div>
-
         <div onClick={() => { setShowProjectsPopup(true); setIsProjectsMinimized(false); }} style={iconStyle}>
           <img src="/icons/file.png" alt="Projects" width="32" />
           <span>Projects</span>
         </div>
-
         <div onClick={() => { setShowResumePopup(true); setIsResumeMinimized(false); }} style={iconStyle}>
           <img src="/icons/resume.png" alt="Resume" width="32" />
           <span>Resume</span>
@@ -80,7 +78,7 @@ function App() {
             left: '50%',
             top: '100px',
             transform: 'translateX(-50%)',
-            zIndex: 9999, // ensure it's on top
+            zIndex: 9999,
           }}
         >
           <div className="title-bar">
@@ -93,13 +91,7 @@ function App() {
           </div>
           <div className="window-body">
             <p>please stay and learn about myself and the work i do!</p>
-            <button
-              className="button"
-              onClick={() => {
-                setIsMainMinimized(false);
-                setIsMainVisible(false);
-              }}
-            >
+            <button className="button" onClick={() => setIsMainVisible(false)}>
               Let's do it!
             </button>
           </div>
@@ -108,44 +100,22 @@ function App() {
 
       {/* Popups */}
       {showHomePopup && !isHomeMinimized && (
-        <Window
-          title="Home"
-          onMinimize={() => setIsHomeMinimized(true)}
-          onMaximize={() => setIsHomeMaximized(prev => !prev)}
-          isMaximized={isHomeMaximized}
-          onClose={() => setShowHomePopup(false)}
-        >
+        <Window title="Home" onMinimize={() => setIsHomeMinimized(true)} onMaximize={() => setIsHomeMaximized(prev => !prev)} isMaximized={isHomeMaximized} onClose={() => setShowHomePopup(false)}>
           <Home />
         </Window>
       )}
-
       {showAboutPopup && !isAboutMinimized && (
-        <Window
-          title="About"
-          onMinimize={() => setIsAboutMinimized(true)}
-          onMaximize={() => setIsAboutMaximized(prev => !prev)}
-          onClose={() => setShowAboutPopup(false)}>
+        <Window title="About" onMinimize={() => setIsAboutMinimized(true)} onMaximize={() => setIsAboutMaximized(prev => !prev)} isMaximized={isAboutMaximized} onClose={() => setShowAboutPopup(false)}>
           <About />
         </Window>
       )}
-
       {showProjectsPopup && !isProjectsMinimized && (
-        <Window
-          title="Projects"
-          onMinimize={() => setIsProjectsMinimized(true)}
-          onMaximize={() => setIsProjectsMaximized(prev => !prev)}
-          onClose={() => setShowProjectsPopup(false)}>
+        <Window title="Projects" onMinimize={() => setIsProjectsMinimized(true)} onMaximize={() => setIsProjectsMaximized(prev => !prev)} isMaximized={isProjectsMaximized} onClose={() => setShowProjectsPopup(false)}>
           <Projects />
         </Window>
       )}
-
       {showResumePopup && !isResumeMinimized && (
-        <Window
-          title="Resume"
-          onMinimize={() => setIsResumeMinimized(true)}
-          onMaximize={() => setIsResumeMaximized(prev => !prev)}
-          isMaximized={isResumeMaximized}
-          onClose={() => setShowResumePopup(false)}>
+        <Window title="Resume" onMinimize={() => setIsResumeMinimized(true)} onMaximize={() => setIsResumeMaximized(prev => !prev)} isMaximized={isResumeMaximized} onClose={() => setShowResumePopup(false)}>
           <Resume />
         </Window>
       )}
@@ -160,8 +130,6 @@ function App() {
     </div>
   );
 }
-
-// ---------- Components ----------
 
 function Window({ title, children, onMinimize, onMaximize, onClose, isMaximized }) {
   return (
@@ -184,19 +152,12 @@ function Window({ title, children, onMinimize, onMaximize, onClose, isMaximized 
           <button aria-label="Close" onClick={onClose}></button>
         </div>
       </div>
-      <div
-        className="window-body"
-        style={{
-          height: isMaximized ? 'calc(100% - 30px)' : 'auto',
-          overflow: 'auto',
-        }}
-      >
+      <div className="window-body" style={{ height: isMaximized ? 'calc(100% - 30px)' : 'auto', overflow: 'auto' }}>
         {children}
       </div>
     </div>
   );
 }
-
 
 function TaskbarButton({ label, onClick }) {
   return (
@@ -216,7 +177,6 @@ function TaskbarButton({ label, onClick }) {
   );
 }
 
-// ---------- Styles ----------
 const iconStyle = {
   display: 'flex',
   flexDirection: 'column',
