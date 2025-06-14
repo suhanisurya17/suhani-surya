@@ -10,7 +10,7 @@ function App() {
   const [showHomePopup, setShowHomePopup] = useState(false);
   const [isHomeMinimized, setIsHomeMinimized] = useState(false);
   const [isHomeMaximized, setIsHomeMaximized] = useState(false);
-
+  
   const [showAboutPopup, setShowAboutPopup] = useState(false);
   const [isAboutMinimized, setIsAboutMinimized] = useState(false);
   const [isAboutMaximized, setIsAboutMaximized] = useState(false);
@@ -93,7 +93,13 @@ function App() {
           </div>
           <div className="window-body">
             <p>please stay and learn about myself and the work i do!</p>
-            <button className="button" onClick={() => setIsMainVisible(false)}>
+            <button
+              className="button"
+              onClick={() => {
+                setIsMainMinimized(false);
+                setIsMainVisible(false);
+              }}
+            >
               Let's do it!
             </button>
           </div>
